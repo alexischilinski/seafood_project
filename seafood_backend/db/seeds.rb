@@ -33,7 +33,9 @@ def fish_list
         farming_methods: fish["Farming Methods"],
         fishing_rate: fish["Fishing Rate"],
         availability: fish["Availability"],
-        health_benefits: fish["Health Benefits"])
+        health_benefits: fish["Health Benefits"],
+        region: fish["NOAA Fisheries Region"]
+        )
     end
 
     result.map do |fish|
