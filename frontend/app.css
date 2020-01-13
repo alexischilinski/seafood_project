@@ -313,3 +313,7 @@ object {
 .scientific-name {
     font-style: italic;
 }
+
+g.west:hover {
+    color: red;
+}

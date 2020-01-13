@@ -6,6 +6,8 @@ const modal = document.querySelector('.modal')
 const trigger = document.querySelector('.info-button')
 const closeButton = document.querySelector('.close-button')
 
+const map = document.querySelector('#svg')
+
 const fishData = document.querySelector('.fish-data')
 const fishImage = document.querySelector('.fish-image')
 const fishInfo = document.querySelector('.info')
@@ -37,6 +39,7 @@ function fishNames(fish){
     fishName.innerText = `${fish.name} `
     fishName.className = "fish-name"
     infoButton.className = "info-button"
+    fishName.id = `${fish.region}`
 
     infoButton.addEventListener('click', event => {
         fishImage.src = fish.image
@@ -51,7 +54,7 @@ function fishNames(fish){
         modal.classList.toggle('show-modal')
     })
     closeButton.addEventListener('click', toggleModal)
-    window.addEventListener('click', windowOnClick)
+    // window.addEventListener('click', windowOnClick)
 
 
     fishName.appendChild(infoButton)
@@ -84,12 +87,56 @@ function windowOnClick(event){
     }
 }
 
-
-const map = document.querySelector('#svg')
 map.addEventListener('load', ()=>{
     const mapDocument = map.contentDocument
-    const west = mapDocument.querySelector('.west')
-    west.addEventListener('click', ()=>{
-        alert("west")
+    const state = mapDocument.querySelector('.state')
+    const gArray = Array.prototype.slice.call(state.querySelectorAll('g'))
+    gArray.map(region=>{
+        region.addEventListener('mouseenter', (event)=>{
+            event.target.style.fill = "orange"
+        })
+        region.addEventListener('mouseleave', (event)=>{
+            event.target.style.fill = ""
+        })
+        region.addEventListener('click', ()=>{
+            const fishArray = Array.prototype.slice.call(document.querySelectorAll('.fish-name'))
+            fishArray.map(fish=>{
+                if (region.className.baseVal == "alaska"){
+                    if (fish.id.includes("Alaska")){
+                        fish.style.display = ""
+                    } else {
+                        fish.style.display = "none"
+                    } 
+                } else if (region.className.baseVal == "hawaii"){
+                    if (fish.id.includes("Pacific Islands")){
+                        fish.style.display = ""
+                    } else {
+                        fish.style.display = "none"
+                    } 
+                } else if (region.className.baseVal == "atlantic"){
+                    if (fish.id.includes("Greater Atlantic")){
+                        fish.style.display = ""
+                    } else {
+                        fish.style.display = "none"
+                    } 
+                } else if (region.className.baseVal == "west"){
+                    if (fish.id.includes("West Coast")){
+                        fish.style.display = ""
+                    } else {
+                        fish.style.display = "none"
+                    } 
+                } else if (region.className.baseVal == "southeast"){
+                    if (fish.id.includes("Southeast")){
+                        fish.style.display = ""
+                    } else {
+                        fish.style.display = "none"
+                    } 
+                }
+            })
+            
+        })
     })
+    // west.addEventListener('click', ()=>{
+    //     alert("west")
+    // })
 })
