@@ -62,7 +62,7 @@ function fishNames(fish){
 }
 
 
-speciesForm.addEventListener('click', (event) => {
+speciesForm.addEventListener('submit', (event) => {
     event.preventDefault()
 
     const formData = new FormData(speciesForm)
@@ -93,7 +93,7 @@ map.addEventListener('load', ()=>{
     const gArray = Array.prototype.slice.call(state.querySelectorAll('g'))
     gArray.map(region=>{
         region.addEventListener('mouseenter', (event)=>{
-            event.target.style.fill = "orange"
+            event.target.style.fill = "purple"
         })
         region.addEventListener('mouseleave', (event)=>{
             event.target.style.fill = ""
