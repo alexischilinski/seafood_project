@@ -1,3 +1,9 @@
+const signupButton = document.querySelector('.sign-up')
+const loginButton = document.querySelector('.login')
+const signupForm = document.querySelector('.signup-form')
+const loginForm = document.querySelector('.login-form')
+const regionDropdown = document.querySelector('.region-dropdown')
+
 const seafoodContainer = document.querySelector('.fish-list')
 const speciesForm = document.querySelector('.fish-form')
 const speciesInput = document.querySelector('.fish-input')
@@ -56,7 +62,6 @@ function fishNames(fish){
     closeButton.addEventListener('click', toggleModal)
     // window.addEventListener('click', windowOnClick)
 
-
     fishName.appendChild(infoButton)
     seafoodContainer.appendChild(fishName)
 }
@@ -75,6 +80,26 @@ speciesForm.addEventListener('submit', (event) => {
         }
     })
 })
+
+signupButton.addEventListener('click', (event)=> {
+    toggleSignUp()
+})
+
+loginButton.addEventListener('click', (event)=>{
+    toggleLogin()
+})
+
+function toggleSignUp(){
+    signupButton.classList.add('invisible')
+    loginButton.classList.add('invisible')
+    signupForm.classList.remove('invisible-signup')
+}
+
+function toggleLogin(){
+    signupButton.classList.add('invisible')
+    loginButton.classList.add('invisible')
+    loginForm.classList.remove('invisible-login')
+}
 
 
 function toggleModal(){
@@ -133,10 +158,17 @@ map.addEventListener('load', ()=>{
                     } 
                 }
             })
-            
         })
     })
-    // west.addEventListener('click', ()=>{
-    //     alert("west")
-    // })
 })
+
+fetch('http://localhost:3000/regions')
+    .then(response=>response.json())
+    .then(regions=>regions.sort(aToZ).map(regionNames))
+
+function regionNames(region){
+    const regionOption = document.createElement('option')
+    regionOption.innerText = region.name 
+
+    regionDropdown.appendChild(regionOption)
+}

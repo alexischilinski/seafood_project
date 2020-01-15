@@ -78,10 +78,54 @@ header {
     height: 7rem;
 }
 
+nav {
+    background-color:#175b8b;
+    height: 2rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.sign-up {
+    margin-top: 0.45rem;
+}
+
+.login {
+    margin-top: 0.45rem;
+}
+
+.signup-form {
+    margin-top: 0.45rem
+}
+
+.login-form {
+    margin-top: 0.45rem
+}
+
+.invisible {
+    display: none;
+}
+
+.invisible-signup {
+    display: none
+}
+
+.invisible-login {
+    display: none
+}
+
+/* .signup-form {
+    display: none;
+}
+
+.login-form {
+    display: none;
+} */
+
 .search {
     display: flex;
     justify-content: space-evenly;
-    border-top: solid #175b8b 2rem;
+    /* border-top: solid #175b8b 2rem; */
     font-family: arial;
 }
 
